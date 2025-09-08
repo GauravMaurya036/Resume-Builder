@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Pricing - Resume Builder</title>
+    
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Modern Navbar with Glassmorphism -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-file-alt me-2"></i>
+                Resume Builder
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="templates.html">
+                            <i class="fas fa-layer-group me-1"></i> Templates
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="fas fa-info-circle me-1"></i> About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pricing.html">
+                            <i class="fas fa-tag me-1"></i> Pricing
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i> Contact Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-lg-3" href="login.html">
+                            <i class="fas fa-user me-1"></i> Get Started
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 mb-4">Simple, Transparent Pricing</h1>
+                    <p class="lead mb-5">Choose the perfect plan for your career goals. No hidden fees.</p>
+                    <div class="pricing-toggle mb-4">
+                        <span class="me-3">Monthly</span>
+                        <label class="switch">
+                            <input type="checkbox" id="billingToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="ms-3">Annually <span class="badge bg-primary">Save 20%</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-plans">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <!-- Free Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card pricing-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="pricing-header">
+                            <h3>Free</h3>
+                            <div class="price">
+                                <span class="currency">Rs</span>
+                                <span class="amount">0</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Perfect for getting started</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-success"></i> 1 Resume Template</li>
+                                <li><i class="fas fa-check text-success"></i> Basic Editor</li>
+                                <li><i class="fas fa-check text-success"></i> Download as PDF</li>
+                                <li><i class="fas fa-check text-success"></i> 24/7 Email Support</li>
+                                <li class="disabled"><i class="fas fa-times text-danger"></i> Premium Templates</li>
+                                <li class="disabled"><i class="fas fa-times text-danger"></i> AI Writing Assistant</li>
+                                <li class="disabled"><i class="fas fa-times text-danger"></i> Multiple Formats</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Get Started
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card pricing-card popular">
+                        <div class="popular-badge">
+                            <i class="fas fa-star me-1"></i>Most Popular
+                        </div>
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="pricing-header">
+                            <h3>Pro</h3>
+                            <div class="price">
+                                <span class="currency">Rs</span>
+                                <span class="amount monthly">800</span>
+                                <span class="amount annual">1500</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Perfect for professionals</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-success"></i> Everything in Free</li>
+                                <li><i class="fas fa-check text-success"></i> Unlimited Templates</li>
+                                <li><i class="fas fa-check text-success"></i> Advanced Editor</li>
+                                <li><i class="fas fa-check text-success"></i> AI Writing Assistant</li>
+                                <li><i class="fas fa-check text-success"></i> Multiple Formats</li>
+                                <li><i class="fas fa-check text-success"></i> Priority Support</li>
+                                <li><i class="fas fa-check text-success"></i> Custom Fonts</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#" class="btn btn-primary w-100">
+                                <i class="fas fa-rocket me-2"></i>Get Started
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card pricing-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="pricing-header">
+                            <h3>Enterprise</h3>
+                            <div class="price">
+                                <span class="currency">Rs</span>
+                                <span class="amount monthly">1000</span>
+                                <span class="amount annual">3000</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p>Perfect for teams</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-success"></i> Everything in Pro</li>
+                                <li><i class="fas fa-check text-success"></i> Team Management</li>
+                                <li><i class="fas fa-check text-success"></i> Custom Branding</li>
+                                <li><i class="fas fa-check text-success"></i> API Access</li>
+                                <li><i class="fas fa-check text-success"></i> Analytics Dashboard</li>
+                                <li><i class="fas fa-check text-success"></i> Dedicated Support</li>
+                                <li><i class="fas fa-check text-success"></i> Custom Integration</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="contact.html" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#enterpriseModal">
+                                <i class="fas fa-comments me-2"></i>Contact Sales
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison -->
+    <section class="features-comparison">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-5">Compare Features</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Free</th>
+                            <th>Pro</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Resume Templates</td>
+                            <td>1</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Export Formats</td>
+                            <td>PDF</td>
+                            <td>PDF, DOCX, TXT</td>
+                            <td>All Formats</td>
+                        </tr>
+                        <tr>
+                            <td>AI Writing Assistant</td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Custom Branding</td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>Email</td>
+                            <td>Priority</td>
+                            <td>Dedicated</td>
+                        </tr>
+                        <tr>
+                            <td>Team Members</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Storage</td>
+                            <td>100MB</td>
+                            <td>10GB</td>
+                            <td>Unlimited</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-5">Frequently Asked Questions</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="pricingFAQ">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Can I change plans at any time?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    Yes, you can upgrade, downgrade, or cancel your plan at any time. If you upgrade, the new features will be instantly available. If you downgrade, the changes will take effect at the start of your next billing cycle.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What payment methods do you accept?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and for Enterprise customers, we also accept bank transfers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Is there a free trial for paid plans?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    Yes, we offer a 14-day free trial for both Pro and Enterprise plans. No credit card is required to start your trial.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What happens to my resumes if I cancel?
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                                <div class="accordion-body">
+                                    You'll always have access to download your created resumes, even after cancellation. However, you won't be able to edit them using our premium features.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Ready to Build Your Perfect Resume?</h2>
+                    <p class="lead mb-5">Join thousands of professionals who've landed their dream jobs using ResumeFlow.</p>
+                    <a href="#" class="btn btn-primary btn-lg">Get Started Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="footer py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Resume Builder</h5>
+                    <p class="mb-4">Creating professional resumes has never been easier. Join us in shaping the future of career development.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Stay Updated</h5>
+                    <p class="mb-4">Subscribe to our newsletter for the latest updates and career tips.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0"> 2025 Resume Builder. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="privacy-policy.html" class="text-white me-3">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+    <!-- Toast Container for Notifications -->
+    <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Professional Resume Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        body {
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 70px auto 0;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        .header {
+            background: #1a237e;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #ffd700, #daa520);
+        }
+        .name {
+            font-size: 36px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+        .title {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 300;
+            color: #ffd700;
+        }
+        .contact-info {
+            background: #283593;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+        .contact-item i {
+            color: #ffd700;
+            font-size: 16px;
+        }
+        .main-content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            color: #1a237e;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .section-title i {
+            color: #daa520;
+        }
+        .summary {
+            color: #34495e;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+        }
+        .experience-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #daa520;
+        }
+        .experience-header {
+            margin-bottom: 10px;
+        }
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        .company-info {
+            color: #666;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .company-info i {
+            color: #daa520;
+        }
+        .experience-details {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .experience-details li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            color: #34495e;
+        }
+        .experience-details li:before {
+            content: "•";
+            color: #daa520;
+            position: absolute;
+            left: 0;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #daa520;
+        }
+        .skill-item i {
+            color: #daa520;
+        }
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .language-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .language-level {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .certification-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        .certification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #daa520;
+        }
+        .cert-title {
+            font-weight: 600;
+            color: #1a237e;
+        }
+        .cert-info {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .achievements-list {
+            list-style: none;
+        }
+        .achievement-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .achievement-icon {
+            color: #daa520;
+            font-size: 24px;
+        }
+        .achievement-content {
+            flex: 1;
+        }
+        .achievement-title {
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 5px;
+        }
+        .achievement-description {
+            color: #666;
+            font-size: 14px;
+        }
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .interest-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #34495e;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+        }
+        .interest-item:hover {
+            background: #fff;
+            border-color: #daa520;
+        }
+        .interest-item i {
+            color: #daa520;
+        }
+
+        /* Toolbar Styles */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #002147;
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            gap: 15px;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .formatting-group {
+            display: flex;
+            gap: 2px;
+            background: rgba(255,255,255,0.1);
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .toolbar button {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .toolbar select {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .toolbar select option {
+            background: #002147;
+            color: white;
+        }
+
+        .toolbar input[type="color"] {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-options {
+            position: relative;
+        }
+
+        .download-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 4px;
+            margin-top: 4px;
+            display: none;
+            z-index: 1001;
+        }
+
+        .download-menu.show {
+            display: block;
+        }
+
+        .download-menu button {
+            width: 100%;
+            text-align: left;
+            color: #002147;
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .download-menu button:hover {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <div class="formatting-group">
+                <button onclick="document.execCommand('bold')" title="Bold">
+                    <i class="fas fa-bold"></i>
+                </button>
+                <button onclick="document.execCommand('italic')" title="Italic">
+                    <i class="fas fa-italic"></i>
+                </button>
+                <button onclick="document.execCommand('underline')" title="Underline">
+                    <i class="fas fa-underline"></i>
+                </button>
+                <button onclick="document.execCommand('strikeThrough')" title="Strike">
+                    <i class="fas fa-strikethrough"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('justifyLeft')" title="Align Left">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <button onclick="document.execCommand('justifyCenter')" title="Center">
+                    <i class="fas fa-align-center"></i>
+                </button>
+                <button onclick="document.execCommand('justifyRight')" title="Align Right">
+                    <i class="fas fa-align-right"></i>
+                </button>
+                <button onclick="document.execCommand('justifyFull')" title="Justify">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('insertUnorderedList')" title="Bullet List">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+                <button onclick="document.execCommand('insertOrderedList')" title="Number List">
+                    <i class="fas fa-list-ol"></i>
+                </button>
+                <button onclick="document.execCommand('outdent')" title="Decrease Indent">
+                    <i class="fas fa-outdent"></i>
+                </button>
+                <button onclick="document.execCommand('indent')" title="Increase Indent">
+                    <i class="fas fa-indent"></i>
+                </button>
+            </div>
+
+            <select onchange="document.execCommand('fontSize', false, this.value)" title="Font Size">
+                <option value="1">Small</option>
+                <option value="3" selected>Normal</option>
+                <option value="5">Large</option>
+                <option value="7">Huge</option>
+            </select>
+
+            <select onchange="document.execCommand('fontName', false, this.value)" title="Font Family">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Calibri">Calibri</option>
+            </select>
+
+            <div class="formatting-group">
+                <input type="color" onchange="document.execCommand('foreColor', false, this.value)" title="Text Color">
+                <input type="color" onchange="document.execCommand('hiliteColor', false, this.value)" title="Highlight Color">
+                <button onclick="document.execCommand('removeFormat')" title="Clear Format">
+                    <i class="fas fa-eraser"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <div class="download-options">
+                <button onclick="toggleDownloadMenu(event)" title="Download">
+                    <i class="fas fa-download"></i>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="download-menu">
+                    <button onclick="downloadAsPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        PDF Format
+                    </button>
+                    <button onclick="downloadAsHTML()">
+                        <i class="fas fa-file-code"></i>
+                        HTML Format
+                    </button>
+                </div>
+            </div>
+            <button onclick="shareResume()" title="Share">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" contenteditable="true">
+        <div class="header">
+            <h1 class="name">YOUR NAME</h1>
+            <div class="title">Banking Professional</div>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-building"></i>
+                <span>Financial Institution</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Location, Country</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+1 234 567 890</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>your.email@bank.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/yourprofile</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Professional Summary -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-tie"></i>
+                    Professional Summary
+                </h2>
+                <p class="summary">
+                    Results-driven banking professional with [X] years of experience in [specific area] 
+                    banking. Proven track record of [key achievement] and expertise in [specific skills]. 
+                    Successfully managed portfolios worth $[X] million while maintaining exceptional 
+                    client satisfaction rates of [X]%.
+                </p>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Professional Experience
+                </h2>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Senior Banking Position</div>
+                        <div class="company-info">
+                            <i class="fas fa-landmark"></i>
+                            Major Bank Name | 20XX - Present
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Managed investment portfolio of $[X]M with [X]% average annual returns</li>
+                        <li>Led team of [X] professionals, increasing department efficiency by [X]%</li>
+                        <li>Developed and implemented [specific initiative] resulting in [X]% cost reduction</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Previous Banking Role</div>
+                        <div class="company-info">
+                            <i class="fas fa-landmark"></i>
+                            Previous Bank | 20XX - 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Generated $[X]M in new business through strategic client acquisition</li>
+                        <li>Achieved [X]% increase in customer satisfaction ratings</li>
+                        <li>Implemented new risk assessment procedures reducing exposure by [X]%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education
+                </h2>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Master of Business Administration (MBA)</div>
+                        <div class="company-info">
+                            <i class="fas fa-university"></i>
+                            University Name | 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Concentration: Finance and Investment Banking</li>
+                        <li>GPA: X.XX / 4.00</li>
+                        <li>Relevant Coursework: Investment Analysis, Risk Management, Financial Markets</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Bachelor's in Finance</div>
+                        <div class="company-info">
+                            <i class="fas fa-university"></i>
+                            University Name | 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Minor: Economics</li>
+                        <li>Academic Honors: Dean's List, Finance Honor Society</li>
+                        <li>Leadership: President, Investment Club</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    Technical Skills
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Financial Analysis</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Risk Management</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Portfolio Management</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Investment Banking</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Financial Modeling</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Market Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-certificate"></i>
+                    Certifications
+                </h2>
+                <div class="certification-item">
+                    <div class="cert-title">Chartered Financial Analyst (CFA)</div>
+                    <div class="cert-info">CFA Institute | Level [X] | 20XX</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-title">Financial Risk Manager (FRM)</div>
+                    <div class="cert-info">GARP | 20XX</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-title">Series 7 & 63 Licenses</div>
+                    <div class="cert-info">FINRA | 20XX</div>
+                </div>
+            </div>
+
+            <!-- Key Achievements -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-trophy"></i>
+                    Key Achievements
+                </h2>
+                <div class="achievements-list">
+                    <div class="achievement-item">
+                        <i class="fas fa-award achievement-icon"></i>
+                        <div class="achievement-content">
+                            <div class="achievement-title">Portfolio Performance Excellence</div>
+                            <div class="achievement-description">Achieved [X]% above-market returns on $[X]M portfolio</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-star achievement-icon"></i>
+                        <div class="achievement-content">
+                            <div class="achievement-title">Risk Management Innovation</div>
+                            <div class="achievement-description">Developed new risk assessment model reducing exposure by [X]%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-language"></i>
+                    Languages
+                </h2>
+                <div class="language-grid">
+                    <div class="language-item">
+                        English
+                        <div class="language-level">Native</div>
+                    </div>
+                    <div class="language-item">
+                        Mandarin
+                        <div class="language-level">Professional</div>
+                    </div>
+                    <div class="language-item">
+                        Spanish
+                        <div class="language-level">Intermediate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Memberships -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i>
+                    Professional Memberships
+                </h2>
+                <ul class="experience-details">
+                    <li>CFA Institute Member</li>
+                    <li>Global Association of Risk Professionals (GARP)</li>
+                    <li>American Bankers Association (ABA)</li>
+                    <li>Financial Planning Association (FPA)</li>
+                </ul>
+            </div>
+
+            <!-- Interests -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i>
+                    Professional Interests
+                </h2>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Market Analysis</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-coins"></i>
+                        <span>Cryptocurrency</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-handshake"></i>
+                        <span>Fintech</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Global Markets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle download menu
+        function toggleDownloadMenu(event) {
+            event.stopPropagation();
+            document.querySelector('.download-menu').classList.toggle('show');
+        }
+
+        // Close download menu when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.download-options button')) {
+                var dropdowns = document.getElementsByClassName("download-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Download as PDF
+        function downloadAsPDF() {
+            const element = document.querySelector('.container');
+            const opt = {
+                margin: 0.5,
+                filename: 'resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Download as HTML
+        function downloadAsHTML() {
+            const content = document.querySelector('.container').outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume.html';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Share resume
+        function shareResume() {
+            const shareData = {
+                title: 'My Resume',
+                text: 'Check out my professional resume!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>
