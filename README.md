@@ -1,5 +1,4 @@
 # Resume-Builder
-# 📄 Resume Builder
 
 A sleek and customizable **Resume Builder** web application built with **Flask**, **HTML/CSS/JS**, and **Bootstrap**. Easily generate professional resumes with multiple design templates, export to PDF.
 ---
@@ -11,6 +10,7 @@ A sleek and customizable **Resume Builder** web application built with **Flask**
 - 🖨️ **Export as PDF** – Download your resume in PDF format.
 - 🎨 **Bootstrap-Powered UI** – Clean and responsive design across devices.
 - ⚙️ **Customizable Sections** – Add/edit education, work experience, skills, certifications, etc.
+
 
 ---
 
