@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Professional Resume Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background: #f5f9fc;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 25px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .name {
+            font-size: 36px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .contact-info {
+            background: rgba(52, 152, 219, 0.9);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+        .contact-item i {
+            font-size: 16px;
+        }
+        .main-content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            color: #3498db;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .section-title i {
+            color: #3498db;
+        }
+        .summary {
+            color: #34495e;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        .experience-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+        .experience-header {
+            margin-bottom: 10px;
+        }
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .company-info {
+            color: #7f8c8d;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .company-info i {
+            color: #3498db;
+        }
+        .experience-details {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .experience-details li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            color: #34495e;
+        }
+        .experience-details li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .skill-item i {
+            color: #3498db;
+        }
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .language-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .language-level {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .certification-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .certification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .cert-title {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .cert-info {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .interest-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #34495e;
+            padding: 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .interest-item:hover {
+            background: #f8f9fa;
+        }
+        .interest-item i {
+            color: #3498db;
+        }
+        .publications-list {
+            list-style: none;
+        }
+        .publication-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .publication-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .publication-authors {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .publication-journal {
+            color: #3498db;
+            font-size: 14px;
+        }
+
+        /* IB-style Toolbar */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #002147;
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            gap: 15px;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .formatting-group {
+            display: flex;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .toolbar button {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .toolbar select {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .toolbar select option {
+            background: #002147;
+            color: white;
+        }
+
+        .toolbar input[type="color"] {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-options {
+            position: relative;
+        }
+
+        .download-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 4px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .download-menu.show {
+            display: block;
+        }
+
+        .download-menu button {
+            width: 100%;
+            text-align: left;
+            color: #002147;
+            padding: 8px 16px;
+        }
+
+        .download-menu button:hover {
+            background: #f8f9fa;
+        }
+
+        /* Add margin to container to prevent toolbar overlap */
+        .container {
+            margin-top: 70px;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1002;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <div class="formatting-group">
+                <button onclick="document.execCommand('bold')" title="Bold">
+                    <i class="fas fa-bold"></i>
+                </button>
+                <button onclick="document.execCommand('italic')" title="Italic">
+                    <i class="fas fa-italic"></i>
+                </button>
+                <button onclick="document.execCommand('underline')" title="Underline">
+                    <i class="fas fa-underline"></i>
+                </button>
+                <button onclick="document.execCommand('strikeThrough')" title="Strike">
+                    <i class="fas fa-strikethrough"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('justifyLeft')" title="Align Left">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <button onclick="document.execCommand('justifyCenter')" title="Center">
+                    <i class="fas fa-align-center"></i>
+                </button>
+                <button onclick="document.execCommand('justifyRight')" title="Align Right">
+                    <i class="fas fa-align-right"></i>
+                </button>
+                <button onclick="document.execCommand('justifyFull')" title="Justify">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('insertUnorderedList')" title="Bullet List">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+                <button onclick="document.execCommand('insertOrderedList')" title="Number List">
+                    <i class="fas fa-list-ol"></i>
+                </button>
+                <button onclick="document.execCommand('outdent')" title="Decrease Indent">
+                    <i class="fas fa-outdent"></i>
+                </button>
+                <button onclick="document.execCommand('indent')" title="Increase Indent">
+                    <i class="fas fa-indent"></i>
+                </button>
+            </div>
+
+            <select onchange="document.execCommand('fontSize', false, this.value)" title="Font Size">
+                <option value="1">Small</option>
+                <option value="3" selected>Normal</option>
+                <option value="5">Large</option>
+                <option value="7">Huge</option>
+            </select>
+
+            <select onchange="document.execCommand('fontName', false, this.value)" title="Font Family">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Calibri">Calibri</option>
+            </select>
+
+            <div class="formatting-group">
+                <input type="color" onchange="document.execCommand('foreColor', false, this.value)" title="Text Color">
+                <input type="color" onchange="document.execCommand('hiliteColor', false, this.value)" title="Highlight Color">
+                <button onclick="document.execCommand('removeFormat')" title="Clear Format">
+                    <i class="fas fa-eraser"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <div class="download-options">
+                <button onclick="toggleDownloadMenu()" title="Download">
+                    <i class="fas fa-download"></i>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="download-menu">
+                    <button onclick="downloadAsPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        PDF Format
+                    </button>
+                    <button onclick="downloadAsHTML()">
+                        <i class="fas fa-file-code"></i>
+                        HTML Format
+                    </button>
+                </div>
+            </div>
+            <button onclick="shareResume()" title="Share">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="name">YOUR NAME, MD</h1>
+            <div class="title">Medical Specialty | Board Certified</div>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-hospital"></i>
+                <span>Hospital Name</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Location, Country</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+1 234 567 890</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>your.email@hospital.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-id-card-alt"></i>
+                <span>License #: XXXXX</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Professional Summary -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-md"></i>
+                    Professional Summary
+                </h2>
+                <p class="summary">
+                    Board-certified [specialty] physician with [X] years of clinical experience. 
+                    Demonstrated expertise in [specific procedures/treatments] and commitment to 
+                    delivering exceptional patient care. Strong track record of [key achievement] 
+                    while maintaining [important metric] in patient satisfaction.
+                </p>
+            </div>
+
+            <!-- Clinical Experience -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-stethoscope"></i>
+                    Clinical Experience
+                </h2>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Attending Physician</div>
+                        <div class="company-info">
+                            <i class="fas fa-hospital-alt"></i>
+                            Hospital Name | 20XX - Present
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Managed patient care unit with [X] beds, maintaining [X]% patient satisfaction rate</li>
+                        <li>Performed over [X] successful [procedures/surgeries] with [X]% positive outcomes</li>
+                        <li>Supervised team of [X] residents and medical students</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Chief Resident</div>
+                        <div class="company-info">
+                            <i class="fas fa-hospital-alt"></i>
+                            Previous Hospital | 20XX - 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Coordinated resident schedules and educational activities</li>
+                        <li>Led daily rounds and case presentations</li>
+                        <li>Implemented quality improvement initiative resulting in [outcome]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education & Training -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education & Training
+                </h2>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Fellowship in [Specialty]</div>
+                        <div class="company-info">
+                            <i class="fas fa-university"></i>
+                            Institution Name | 20XX - 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Specialized training in [specific procedures/techniques]</li>
+                        <li>Conducted research on [topic] resulting in [X] publications</li>
+                        <li>Received [award/recognition] for outstanding performance</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Residency in [Specialty]</div>
+                        <div class="company-info">
+                            <i class="fas fa-university"></i>
+                            Institution Name | 20XX - 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Completed [X] rotations in various subspecialties</li>
+                        <li>Participated in [X] research projects</li>
+                        <li>Served as Chief Resident in final year</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="job-title">Doctor of Medicine (MD)</div>
+                        <div class="company-info">
+                            <i class="fas fa-university"></i>
+                            Medical School | 20XX - 20XX
+                        </div>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Graduated with Honors</li>
+                        <li>Class Rank: Top [X]%</li>
+                        <li>Research Focus: [Topic]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Clinical Skills -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-hand-holding-medical"></i>
+                    Clinical Skills
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 1</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 2</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 3</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 4</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 5</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Clinical Procedure 6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications & Licenses -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-certificate"></i>
+                    Certifications & Licenses
+                </h2>
+                <div class="certification-item">
+                    <div class="cert-title">Board Certification in [Specialty]</div>
+                    <div class="cert-info">American Board of [Specialty] | 20XX - Present</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-title">State Medical License</div>
+                    <div class="cert-info">State Medical Board | License #XXXXX | 20XX - Present</div>
+                </div>
+                <div class="certification-item">
+                    <div class="cert-title">Additional Certification</div>
+                    <div class="cert-info">Certifying Body | 20XX</div>
+                </div>
+            </div>
+
+            <!-- Publications -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-book-medical"></i>
+                    Publications
+                </h2>
+                <div class="publications-list">
+                    <div class="publication-item">
+                        <div class="publication-title">Title of Research Paper</div>
+                        <div class="publication-authors">Authors: Your Name, et al.</div>
+                        <div class="publication-journal">Journal Name, Year; Volume(Issue):Pages</div>
+                    </div>
+                    <div class="publication-item">
+                        <div class="publication-title">Title of Research Paper</div>
+                        <div class="publication-authors">Authors: Your Name, et al.</div>
+                        <div class="publication-journal">Journal Name, Year; Volume(Issue):Pages</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Memberships -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i>
+                    Professional Memberships
+                </h2>
+                <ul class="experience-details">
+                    <li>American Medical Association (AMA)</li>
+                    <li>American Academy of [Specialty]</li>
+                    <li>State Medical Society</li>
+                    <li>Other Professional Organizations</li>
+                </ul>
+            </div>
+
+            <!-- Languages -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-language"></i>
+                    Languages
+                </h2>
+                <div class="language-grid">
+                    <div class="language-item">
+                        English
+                        <div class="language-level">Native</div>
+                    </div>
+                    <div class="language-item">
+                        Spanish
+                        <div class="language-level">Professional</div>
+                    </div>
+                    <div class="language-item">
+                        French
+                        <div class="language-level">Intermediate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Interests -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-microscope"></i>
+                    Research Interests
+                </h2>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <i class="fas fa-dna"></i>
+                        <span>Research Area 1</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Research Area 2</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Research Area 3</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-microscope"></i>
+                        <span>Research Area 4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make all content editable
+        document.querySelectorAll('.container *').forEach(element => {
+            if (!element.classList.contains('toolbar') && !element.closest('.toolbar')) {
+                element.setAttribute('contenteditable', 'true');
+            }
+        });
+
+        // Toggle download menu
+        function toggleDownloadMenu() {
+            document.querySelector('.download-menu').classList.toggle('show');
+        }
+
+        // Close download menu when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.download-options button')) {
+                var dropdowns = document.getElementsByClassName("download-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Download as PDF
+        function downloadAsPDF() {
+            const element = document.querySelector('.container');
+            const opt = {
+                margin: 0.5,
+                filename: 'resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Download as HTML
+        function downloadAsHTML() {
+            const content = document.querySelector('.container').outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume.html';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Share resume
+        function shareResume() {
+            const shareData = {
+                title: 'My Resume',
+                text: 'Check out my professional resume!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>

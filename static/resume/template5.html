@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Professional Resume Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            padding: 40px;
+            color: #333;
+        }
+        .resume-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            background-color: #d64541;
+            color: white;
+            padding: 40px 30px;
+        }
+        .main-content {
+            padding: 40px;
+            background-color: #fff;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            color: #d64541;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .contact-section {
+            margin-bottom: 30px;
+        }
+        .contact-title {
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-title i {
+            font-size: 16px;
+        }
+        .contact-info {
+            font-size: 14px;
+            margin-bottom: 5px;
+            padding-left: 24px;
+            opacity: 0.9;
+        }
+        .name {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            letter-spacing: -1px;
+        }
+        .profession {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title i {
+            color: #d64541;
+        }
+        .experience-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 2px solid #d64541;
+        }
+        .experience-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .experience-company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .experience-company i {
+            color: #d64541;
+            font-size: 12px;
+        }
+        .experience-item ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .experience-item li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .experience-item li:before {
+            content: "•";
+            color: #d64541;
+        }
+        .skills-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .skills-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .skills-list li i {
+            color: #d64541;
+        }
+        .language-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .language-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .language-level {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .interests-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .interests-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .interests-list i {
+            color: rgba(255,255,255,0.8);
+        }
+        .certifications-list {
+            list-style: none;
+        }
+        .certifications-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .certifications-list li:before {
+            content: "•";
+            color: #d64541;
+            position: absolute;
+            left: 0;
+        }
+        .cert-date {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+        .summary {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Toolbar Styles */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #002147;
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            gap: 15px;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .formatting-group {
+            display: flex;
+            gap: 2px;
+            background: rgba(255,255,255,0.1);
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .toolbar button {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .toolbar select {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        .toolbar select option {
+            background: #002147;
+            color: white;
+        }
+
+        .toolbar input[type="color"] {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-options {
+            position: relative;
+        }
+
+        .download-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 4px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .download-menu.show {
+            display: block;
+        }
+
+        .download-menu button {
+            width: 100%;
+            text-align: left;
+            color: #002147;
+            padding: 8px 16px;
+        }
+
+        .download-menu button:hover {
+            background: #f8f9fa;
+        }
+
+        /* Add margin to container to prevent toolbar overlap */
+        .container {
+            margin-top: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <div class="formatting-group">
+                <button onclick="document.execCommand('bold')" title="Bold">
+                    <i class="fas fa-bold"></i>
+                </button>
+                <button onclick="document.execCommand('italic')" title="Italic">
+                    <i class="fas fa-italic"></i>
+                </button>
+                <button onclick="document.execCommand('underline')" title="Underline">
+                    <i class="fas fa-underline"></i>
+                </button>
+                <button onclick="document.execCommand('strikeThrough')" title="Strike">
+                    <i class="fas fa-strikethrough"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('justifyLeft')" title="Align Left">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <button onclick="document.execCommand('justifyCenter')" title="Center">
+                    <i class="fas fa-align-center"></i>
+                </button>
+                <button onclick="document.execCommand('justifyRight')" title="Align Right">
+                    <i class="fas fa-align-right"></i>
+                </button>
+                <button onclick="document.execCommand('justifyFull')" title="Justify">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button onclick="document.execCommand('insertUnorderedList')" title="Bullet List">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+                <button onclick="document.execCommand('insertOrderedList')" title="Number List">
+                    <i class="fas fa-list-ol"></i>
+                </button>
+                <button onclick="document.execCommand('outdent')" title="Decrease Indent">
+                    <i class="fas fa-outdent"></i>
+                </button>
+                <button onclick="document.execCommand('indent')" title="Increase Indent">
+                    <i class="fas fa-indent"></i>
+                </button>
+            </div>
+
+            <select onchange="document.execCommand('fontSize', false, this.value)" title="Font Size">
+                <option value="1">Small</option>
+                <option value="3" selected>Normal</option>
+                <option value="5">Large</option>
+                <option value="7">Huge</option>
+            </select>
+
+            <select onchange="document.execCommand('fontName', false, this.value)" title="Font Family">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Calibri">Calibri</option>
+            </select>
+
+            <div class="formatting-group">
+                <input type="color" onchange="document.execCommand('foreColor', false, this.value)" title="Text Color">
+                <input type="color" onchange="document.execCommand('hiliteColor', false, this.value)" title="Highlight Color">
+                <button onclick="document.execCommand('removeFormat')" title="Clear Format">
+                    <i class="fas fa-eraser"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <div class="download-options">
+                <button onclick="toggleDownloadMenu()" title="Download">
+                    <i class="fas fa-download"></i>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="download-menu">
+                    <button onclick="downloadAsPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        PDF Format
+                    </button>
+                    <button onclick="downloadAsHTML()">
+                        <i class="fas fa-file-code"></i>
+                        HTML Format
+                    </button>
+                </div>
+            </div>
+            <button onclick="shareResume()" title="Share">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" contenteditable="true">
+        <div class="resume-container">
+            <div class="sidebar">
+                <div class="logo">JM</div>
+                
+                <!-- Contact Information -->
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Location
+                    </h3>
+                    <div class="contact-info">Your City, State</div>
+                </div>
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-phone"></i>
+                        Phone
+                    </h3>
+                    <div class="contact-info">XXX-XXX-XXXX</div>
+                </div>
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </h3>
+                    <div class="contact-info">your@email.com</div>
+                </div>
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-globe"></i>
+                        Website
+                    </h3>
+                    <div class="contact-info">www.yourwebsite.com</div>
+                </div>
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </h3>
+                    <div class="contact-info">linkedin.com/in/yourprofile</div>
+                </div>
+
+                <!-- Languages Section -->
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-language"></i>
+                        Languages
+                    </h3>
+                    <ul class="language-list">
+                        <li>
+                            English <span class="language-level">Native</span>
+                        </li>
+                        <li>
+                            Spanish <span class="language-level">Professional</span>
+                        </li>
+                        <li>
+                            French <span class="language-level">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Interests Section -->
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-heart"></i>
+                        Interests
+                    </h3>
+                    <ul class="interests-list">
+                        <li><i class="fas fa-book"></i>Reading</li>
+                        <li><i class="fas fa-hiking"></i>Hiking</li>
+                        <li><i class="fas fa-camera"></i>Photography</li>
+                        <li><i class="fas fa-music"></i>Music</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <header>
+                    <h1 class="name">YOUR NAME</h1>
+                    <div class="profession">Your Professional Title</div>
+                </header>
+
+                <!-- Professional Summary -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        Professional Summary
+                    </h2>
+                    <p class="summary">
+                        Experienced professional with a proven track record of success in [your field]. 
+                        Skilled in [key skill 1], [key skill 2], and [key skill 3] with a focus on 
+                        delivering high-quality results. Demonstrated ability to [key achievement] 
+                        while maintaining [important metric].
+                    </p>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Work Experience
+                    </h2>
+                    <div class="experience-item">
+                        <div class="experience-title">Senior Position Title</div>
+                        <div class="experience-company">
+                            <i class="far fa-building"></i>
+                            Current Company | 20XX - Present
+                        </div>
+                        <ul>
+                            <li>Led and executed major projects resulting in X% improvement in [metric]</li>
+                            <li>Managed a team of X professionals across multiple departments</li>
+                            <li>Implemented new processes that reduced costs by X%</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Previous Position</div>
+                        <div class="experience-company">
+                            <i class="far fa-building"></i>
+                            Previous Company | 20XX - 20XX
+                        </div>
+                        <ul>
+                            <li>Developed and maintained relationships with key stakeholders</li>
+                            <li>Increased department efficiency by implementing new systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Education
+                    </h2>
+                    <div class="experience-item">
+                        <div class="experience-title">Master's Degree</div>
+                        <div class="experience-company">
+                            <i class="fas fa-university"></i>
+                            University Name | 20XX
+                        </div>
+                        <ul>
+                            <li>Major: Your Field of Study</li>
+                            <li>GPA: X.XX / 4.00</li>
+                            <li>Relevant Coursework: Course 1, Course 2, Course 3</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-title">Bachelor's Degree</div>
+                        <div class="experience-company">
+                            <i class="fas fa-university"></i>
+                            University Name | 20XX
+                        </div>
+                        <ul>
+                            <li>Major: Your Field of Study</li>
+                            <li>Minor: Secondary Field</li>
+                            <li>Academic Honors: Dean's List, Honor Society</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-tools"></i>
+                        Technical Skills
+                    </h2>
+                    <ul class="skills-list">
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 1</li>
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 2</li>
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 3</li>
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 4</li>
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 5</li>
+                        <li><i class="fas fa-check-circle"></i>Technical Skill 6</li>
+                    </ul>
+                </div>
+
+                <!-- Certifications -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-certificate"></i>
+                        Certifications
+                    </h2>
+                    <ul class="certifications-list">
+                        <li>
+                            Professional Certification Name
+                            <div class="cert-date">Issued by Organization Name | 20XX</div>
+                        </li>
+                        <li>
+                            Industry Certification
+                            <div class="cert-date">Issued by Organization Name | 20XX</div>
+                        </li>
+                        <li>
+                            Technical Certification
+                            <div class="cert-date">Issued by Organization Name | 20XX</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Key Projects
+                    </h2>
+                    <div class="experience-item">
+                        <div class="experience-title">Project Name</div>
+                        <div class="experience-company">
+                            <i class="fas fa-calendar-alt"></i>
+                            20XX
+                        </div>
+                        <ul>
+                            <li>Led development of [project description]</li>
+                            <li>Implemented [technology/methodology] resulting in [outcome]</li>
+                            <li>Collaborated with team of X members to deliver project on time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Volunteer Experience -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-hands-helping"></i>
+                        Volunteer Experience
+                    </h2>
+                    <div class="experience-item">
+                        <div class="experience-title">Volunteer Position</div>
+                        <div class="experience-company">
+                            <i class="fas fa-heart"></i>
+                            Organization Name | 20XX - Present
+                        </div>
+                        <ul>
+                            <li>Contributed X hours monthly to [cause/project]</li>
+                            <li>Organized and led team of X volunteers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make all content editable
+        document.querySelectorAll('.container *').forEach(element => {
+            if (!element.classList.contains('toolbar') && !element.closest('.toolbar')) {
+                element.setAttribute('contenteditable', 'true');
+            }
+        });
+
+        // Toggle download menu
+        function toggleDownloadMenu() {
+            document.querySelector('.download-menu').classList.toggle('show');
+        }
+
+        // Close download menu when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.download-options button')) {
+                var dropdowns = document.getElementsByClassName("download-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Download as PDF
+        function downloadAsPDF() {
+            const element = document.querySelector('.container');
+            const opt = {
+                margin: 0.5,
+                filename: 'resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Download as HTML
+        function downloadAsHTML() {
+            const content = document.querySelector('.container').outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume.html';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Share resume
+        function shareResume() {
+            const shareData = {
+                title: 'My Resume',
+                text: 'Check out my professional resume!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('Link copied to clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>
