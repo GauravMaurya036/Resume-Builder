@@ -120,8 +120,6 @@ http://127.0.0.1:5000
 
 **Gaurav Maurya**
 
-* GitHub: https://github.com/yourusername
-* LinkedIn: https://linkedin.com/in/yourprofile
 
 ---
 
